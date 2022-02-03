@@ -27,5 +27,12 @@ func (s *itemsService) Create(item items.Item) (*items.Item, rest_errors.RestErr
 }
 
 func (s *itemsService) Get(id string) (*items.Item, rest_errors.RestErr) {
+	item := items.Item{
+		Id: id,
+	}
+	if err := item.Get(); err != nil {
+		return nil, err
+	}
+	return &item, nil
 	return nil, rest_errors.NewRestError("Implement me", http.StatusNotImplemented, "Not implemented", nil)
 }
